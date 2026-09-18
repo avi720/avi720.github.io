@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>אביאור פז — מפתח Full-stack | כלים מבוססי נתונים ואוטומציה פיננסית</title>
+<meta name="description" content="מפתח Full-stack שבונה כלים מבוססי נתונים — Next.js, Python, אוטומציה פיננסית. אנליטיקת מסחר ואפליקציות קהילה בפרודקשן.">
+<link rel="canonical" href="https://avi720.github.io/">
+
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="אביאור פז — מפתח Full-stack">
+<meta property="og:description" content="בונה כלים מבוססי נתונים — Next.js, Python, אוטומציה פיננסית.">
+<meta property="og:url" content="https://avi720.github.io/">
+<!-- ⚠️ הקובץ og.png עדיין לא קיים — ראה הוראות-הקמה.md -->
+<meta property="og:image" content="https://avi720.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230d1117'/><text x='32' y='45' font-size='32' font-family='sans-serif' fill='%2358d4ff' text-anchor='middle'>א</text></svg>">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "inLanguage": "he-IL",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "אביאור פז",
+    "alternateName": "Aviur Paz",
+    "jobTitle": "מפתח Full-stack",
+    "url": "https://avi720.github.io/",
+    "address": { "@type": "PostalAddress", "addressLocality": "באר שבע", "addressCountry": "IL" },
+    "knowsAbout": ["TypeScript","React","Next.js","Python","FastAPI","PostgreSQL","Supabase","Financial APIs","Data pipelines"],
+    "sameAs": ["https://github.com/avi720","https://tradeanalyst.app","https://www.linkedin.com/in/%D7%90%D7%91%D7%99%D7%90%D7%95%D7%A8-%D7%A4%D7%96-5469b629a/"]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#121722; --panel-2:#171d2a;
+    --line:#242c3d; --text:#e6ebf4; --muted:#93a0b8;
+    --accent:#58d4ff; --accent-2:#7c8cff;
+    --radius:14px; --maxw:860px;
+    --font:"Heebo",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:light){
+    :root:not([data-theme="dark"]){
+      --bg:#fbfcfe; --panel:#fff; --panel-2:#f4f7fb; --line:#e2e8f2;
+      --text:#111827; --muted:#5b6b85;
+      --accent:#0b7fc7; --accent-2:#4b5bd6;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--font); font-size:17px; line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 16px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  /* מונחים טכניים באנגלית בתוך טקסט עברי */
+  .ltr{direction:ltr; unicode-bidi:isolate; display:inline-block}
+  code{font-family:var(--mono); font-size:.9em; direction:ltr; unicode-bidi:isolate;
+       background:var(--panel-2); padding:1px 5px; border-radius:4px}
+
+  /* ---------- הירו ---------- */
+  header{padding:72px 0 44px}
+  .eyebrow{font-size:13.5px; color:var(--accent); letter-spacing:.04em; margin:0 0 12px; font-weight:500}
+  h1{font-size:clamp(36px,7.5vw,54px); line-height:1.15; margin:0 0 14px; letter-spacing:-.02em; font-weight:800}
+  .tagline{font-size:clamp(18px,3.4vw,22px); margin:0 0 18px; font-weight:500; line-height:1.5}
+  .tagline em{color:var(--accent); font-style:normal}
+  .meta{color:var(--muted); font-size:15.5px; margin:0 0 26px}
+  .cta{display:flex; flex-wrap:wrap; gap:10px}
+  .btn{
+    display:inline-block; padding:10px 20px; border-radius:10px; font-size:15.5px; font-weight:500;
+    border:1px solid var(--line); background:var(--panel); color:var(--text); transition:.15s;
+  }
+  .btn:hover{border-color:var(--accent); text-decoration:none; transform:translateY(-1px)}
+  .btn.primary{background:var(--accent); color:#06121b; border-color:transparent; font-weight:700}
+  @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .btn.primary{color:#fff}}
+
+  /* ---------- סקשנים ---------- */
+  section{padding:30px 0; border-top:1px solid var(--line)}
+  h2{font-size:14.5px; letter-spacing:.06em; color:var(--muted); margin:0 0 20px; font-weight:700}
+  p{margin:0 0 15px}
+
+  /* ---------- פרויקטים ---------- */
+  .project{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; margin-bottom:16px;
+  }
+  .project h3{margin:0 0 6px; font-size:21px; letter-spacing:-.01em; direction:ltr; text-align:right}
+  .project .one-liner{font-weight:500; margin:0 0 14px}
+  .stack{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px; padding:0; list-style:none; direction:ltr; justify-content:flex-end}
+  .stack li{
+    font-family:var(--mono); font-size:12px; padding:3px 9px; border-radius:999px;
+    background:var(--panel-2); border:1px solid var(--line); color:var(--muted);
+  }
+  .project .detail{color:var(--muted); font-size:16px; margin:0 0 16px}
+  .links{display:flex; flex-wrap:wrap; gap:8px 18px; font-size:15.5px; font-weight:500}
+
+  /* ---------- מיומנויות ---------- */
+  .skills{display:grid; gap:12px}
+  .skill-row{display:grid; grid-template-columns:90px 1fr; gap:14px; align-items:start}
+  .skill-row dt{font-size:14.5px; color:var(--accent-2); font-weight:700; padding-top:2px}
+  .skill-row dd{margin:0; color:var(--muted); font-size:16px}
+
+  /* ---------- נתוני GitHub חיים ---------- */
+  .gh-stats{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px}
+  .stat{flex:1 1 130px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .stat b{display:block; font-size:23px; font-family:var(--mono); line-height:1.3; direction:ltr; text-align:right}
+  .stat span{font-size:13px; color:var(--muted)}
+  .repo-list{display:grid; gap:10px}
+  .repo{
+    display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 16px;
+  }
+  .repo .name{font-weight:700; font-size:15.5px; direction:ltr; unicode-bidi:isolate}
+  .repo .sub{font-size:13px; color:var(--muted); font-family:var(--mono); white-space:nowrap; direction:ltr}
+  .loading{color:var(--muted); font-size:14.5px}
+
+  /* ---------- יצירת קשר ---------- */
+  .contact-box{
+    background:linear-gradient(135deg,var(--panel),var(--panel-2));
+    border:1px solid var(--line); border-radius:var(--radius); padding:26px; text-align:center;
+  }
+  .contact-box p{margin:0 0 16px; color:var(--muted)}
+  footer{padding:32px 0 56px; color:var(--muted); font-size:13.5px; text-align:center; border-top:1px solid var(--line)}
+
+  @media (max-width:520px){
+    body{font-size:16px}
+    header{padding:52px 0 32px}
+    .skill-row{grid-template-columns:1fr; gap:2px}
+    .repo{flex-direction:column; gap:4px}
+    .repo .sub{white-space:normal}
+    .stack{justify-content:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">באר שבע</p>
+    <h1>אביאור פז</h1>
+    <p class="tagline">מפתח Full-stack שבונה <em>כלים מבוססי נתונים</em> — <span class="ltr">Next.js</span>, <span class="ltr">Python</span>, אוטומציה פיננסית.</p>
+    <p class="meta">שחררתי SaaS בתשלום שמסנכרן נתוני ברוקר אמיתיים, ואפליקציית קהילה בשימוש פעיל.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">לעבודות</a>
+      <a class="btn" href="https://github.com/avi720" rel="me">GitHub</a>
+      <a class="btn" href="#contact">יצירת קשר</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>קצת עליי</h2>
+    <p>הגעתי לתוכנה דרך בעיה קונקרטית, לא דרך קורס. עקבתי אחרי העסקאות שלי בין דוחות ברוקר לגיליונות אלקטרוניים, המספרים אף פעם לא הסתדרו, והכלים שהיו קיימים היו או כבדים מדי או טיפשיים מדי. אז בניתי את הכלי שהייתי צריך — והוא הפך למוצר בתשלום עם משתמשים.</p>
+    <p>זה עיצב את הדרך שבה אני עובד. אני מתחיל מהנתונים — איך הם באמת נראים, איפה הם נשברים, מה מקרי הקצה — ומתכנן אחורה משם. התאמת פוזיציות ב-<span class="ltr">FIFO</span>, הצפנת טוקנים של ברוקר, ג'ובים מתוזמנים שצריכים לשרוד קריאת <span class="ltr">API</span> שנכשלה: החלקים הלא-זוהרים הם המקום שבו העבודה האמיתית נמצאת.</p>
+    <p>אני עובד לרוחב הסטאק כי הבעיות המעניינות יושבות בתפרים. דשבורד הוא רק כן כמו הפייפליין שמזין אותו, וג'וב סנכרון שווה משהו רק אם מישהו יכול לקרוא את מה שהוא ייצר.</p>
+  </section>
+
+  <section id="projects">
+    <h2>פרויקטים נבחרים</h2>
+
+    <article class="project">
+      <h3>Trade Analyst</h3>
+      <p class="one-liner">מוצר <span class="ltr">SaaS</span> חי בתשלום — יומן מסחר עם <span class="ltr">AI</span> שמסנכרן אוטומטית מ-<span class="ltr">Interactive Brokers</span>.</p>
+      <ul class="stack">
+        <li>Next.js 14</li><li>TypeScript</li><li>Supabase / Postgres</li><li>IBKR Flex API</li><li>Google Gemini</li>
+      </ul>
+      <p class="detail">החלק הקשה לא היה הממשק — אלא לגרום למספרים להיות <em>נכונים</em>. דוחות ברוקר מגיעים כרשימת טרנזקציות שטוחה בלי מושג של פוזיציה, אז מימשתי התאמת לוטים ב-<span class="ltr">FIFO</span> כדי לגזור רווח והפסד ממומש ולא-ממומש מתוך <span class="ltr">fills</span> גולמיים, ומעליה שכבת אנליטיקה: <span class="ltr">R-multiples</span>, <span class="ltr">win-rate</span>, <span class="ltr">max drawdown</span>, והתפלגות ביצועים לפי <span class="ltr">setup</span> ולפי שעה ביום.</p>
+      <p class="detail">מעל זה יושבות ההחלטות שמוצר בתשלום מחייב: טוקני <span class="ltr">IBKR Flex</span> מוצפנים ב-<span class="ltr">AES-256-GCM</span> לפני שהם נוגעים במסד, הרשאות נאכפות ב-<span class="ltr">Row-Level Security</span> כך שכל שאילתה רואה רק את השורות של המשתמש שלה, והסנכרון היומי רץ כ-<span class="ltr">GitHub Actions workflow</span> במקום <span class="ltr">cron</span> של <span class="ltr">Vercel</span> — אותה אמינות, בלי לשלם על התוכנית העסקית. "חנן", עוזר ה-<span class="ltr">AI</span> מבוסס <span class="ltr">Gemini</span>, עונה מול הסטטיסטיקה האמיתית של המשתמש ולא מהזיכרון. כל הממשק נבנה <span class="ltr">RTL</span> מהיסוד — טבלאות, גרפים, פורמט מספרים ומיילים.</p>
+      <p class="links">
+        <a href="https://tradeanalyst.app">tradeanalyst.app — המוצר החי ←</a>
+        <!-- ⚠️ מניח ששינית את שם הרפו ל- trade-analyst -->
+        <a href="https://github.com/avi720/trade-analyst">קוד מקור ←</a>
+      </p>
+    </article>
+
+    <article class="project">
+      <h3>Commun-It-Is</h3>
+      <p class="one-liner">אפליקציית קהילה — טרמפים, פוסטים, ספר טלפונים והתראות פוש. בשימוש פעיל.</p>
+      <ul class="stack">
+        <li>React + Vite</li><li>FastAPI</li><li>Supabase</li><li>Google Maps</li><li>Capacitor</li>
+      </ul>
+      <p class="detail">מוצר שלם, לא הדגמה: אימות משתמשים, לוח טרמפים משותף עם אינטגרציית מפות, ספר טלפונים קהילתי, והתראות פוש דרך <span class="ltr">Firebase</span>. הכל נפרס כפרויקט <span class="ltr">Vercel</span> אחד כשה-<span class="ltr">backend</span> ב-<span class="ltr">FastAPI</span> רץ כפונקציה <span class="ltr">serverless</span> וניתוב ה-<span class="ltr">SPA</span> נופל חזרה ל-<span class="ltr">React Router</span> — מה שחייב לסדר נכון את הראוטינג, את הפרדת משתני הסביבה (משתני <code>VITE_</code> בזמן בנייה מול סודות שרת בזמן ריצה) ואת הגבול של מפתח ה-<span class="ltr">service role</span>, כך שהדפדפן לעולם לא נוגע בהרשאות מיוחסות. גרסת האנדרואיד עוטפת את אותו אתר מפורסם עם <span class="ltr">Capacitor</span>.</p>
+      <p class="links">
+        <a href="https://commun-it-is.vercel.app">הדגמה חיה ←</a>
+        <a href="https://github.com/avi720/Commun-It-Is">קוד מקור ←</a>
+      </p>
+    </article>
+    <article class="project">
+      <h3>Trading Agent <span style="font-size:13px;color:var(--muted);font-weight:400">— קוד סגור</span></h3>
+      <p class="one-liner">סוכן מסחר אוטונומי על חשבון נייר — רוטינות, חוקי כניסה ויציאה, אסטרטגיה ויומן ריצה.</p>
+      <ul class="stack"><li>Python</li></ul>
+      <p class="detail">המשך טבעי של <span class="ltr">Trade Analyst</span>: אם היומן עונה על "מה עבד לי", הסוכן בודק "האם חוקים מפורשים מחזיקים מים כשמריצים אותם בלי יד אנושית". רץ על חשבון נייר בלבד, עם רוטינות מתוזמנות ויומן שמתעד כל החלטה.</p>
+      <p class="links"><span style="color:var(--muted);font-weight:400;font-style:italic">הרפו פרטי — הדגמה וסיור בקוד לפי בקשה</span></p>
+    </article>
+  </section>
+
+  <section id="skills">
+    <h2>מיומנויות</h2>
+    <dl class="skills">
+      <div class="skill-row"><dt>עיקרי</dt><dd>TypeScript · React / Next.js · Python (FastAPI) · PostgreSQL / Supabase</dd></div>
+      <div class="skill-row"><dt>משני</dt><dd>פריסות Vercel ו-serverless · GitHub Actions CI/CD · REST ו-APIs פיננסיים (IBKR, Polygon) · Capacitor</dd></div>
+      <div class="skill-row"><dt>בלמידה</dt><dd>דפוסי אפליקציות LLM · בדיקות לפייפליין נתונים</dd></div>
+    </dl>
+  </section>
+
+  <section id="activity">
+    <h2>פעילות ב-GitHub <span style="font-weight:400">— נתונים חיים</span></h2>
+    <div class="gh-stats" id="gh-stats">
+      <p class="loading">טוען נתונים מה-API של GitHub…</p>
+    </div>
+    <div class="repo-list" id="gh-repos"></div>
+  </section>
+
+  <section id="contact">
+    <h2>יצירת קשר</h2>
+    <div class="contact-box">
+      <p>פתוח למשרות Full-stack ותפקידים מוכווני נתונים. הדרך המהירה להשיג אותי:</p>
+      
+      <a class="btn primary" href="mailto:avi.paz159@gmail.com">avi.paz159@gmail.com</a>
+      <a class="btn" href="https://github.com/avi720">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/%D7%90%D7%91%D7%99%D7%90%D7%95%D7%A8-%D7%A4%D7%96-5469b629a/">לינקדאין</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>נבנה ומתוחזק על ידי אביאור פז · <span id="updated"></span></p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var USER = 'avi720';
+  // רפואים שלא יוצגו (תבניות/ריקים) — הוסף או הסר שמות כאן
+  var HIDE = ['experimenta', 'trempikatzia'];
+
+  var statsEl = document.getElementById('gh-stats');
+  var reposEl = document.getElementById('gh-repos');
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function ago(iso) {
+    var d = Math.floor((Date.now() - new Date(iso)) / 86400000);
+    if (d < 1) return 'היום';
+    if (d === 1) return 'אתמול';
+    if (d < 30) return 'לפני ' + d + ' ימים';
+    if (d < 60) return 'לפני חודש';
+    if (d < 365) return 'לפני ' + Math.floor(d / 30) + ' חודשים';
+    if (d < 730) return 'לפני שנה';
+    return 'לפני ' + Math.floor(d / 365) + ' שנים';
+  }
+
+  function stat(value, label) {
+    return '<div class="stat"><b>' + esc(value) + '</b><span>' + esc(label) + '</span></div>';
+  }
+
+  function fallback() {
+    statsEl.innerHTML =
+      '<p class="loading">ה-API של GitHub לא זמין כרגע — אפשר לראות הכל ישירות ב־' +
+      '<a href="https://github.com/' + USER + '">github.com/' + USER + '</a></p>';
+  }
+
+  Promise.all([
+    fetch('https://api.github.com/users/' + USER).then(function (r) { if (!r.ok) throw 0; return r.json(); }),
+    fetch('https://api.github.com/users/' + USER + '/repos?per_page=100&sort=pushed')
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+  ]).then(function (res) {
+    var user = res[0];
+    var repos = (res[1] || []).filter(function (r) {
+      return !r.fork && !r.archived && HIDE.indexOf(r.name) === -1;
+    });
+
+    var langs = {};
+    repos.forEach(function (r) { if (r.language) langs[r.language] = (langs[r.language] || 0) + 1; });
+    var topLang = Object.keys(langs).sort(function (a, b) { return langs[b] - langs[a]; })[0] || '—';
+    var lastPush = repos.length ? ago(repos[0].pushed_at) : '—';
+
+    statsEl.innerHTML =
+      stat(user.public_repos, 'רפואים ציבוריים') +
+      stat(topLang, 'שפה ראשית') +
+      stat(lastPush, 'עדכון אחרון') +
+      stat(new Date(user.created_at).getFullYear(), 'בגיטהאב מאז');
+
+    reposEl.innerHTML = repos.slice(0, 5).map(function (r) {
+      return '<a class="repo" href="' + esc(r.html_url) + '">' +
+        '<span class="name">' + esc(r.name) +
+        (r.description ? ' <span style="font-weight:400;color:var(--muted)">— ' + esc(r.description) + '</span>' : '') +
+        '</span>' +
+        '<span class="sub">' + esc(r.language || '—') + ' · ' + esc(ago(r.pushed_at)) + '</span>' +
+        '</a>';
+    }).join('');
+  }).catch(fallback);
+
+  document.getElementById('updated').textContent =
+    'עודכן לאחרונה ב' + new Date().toLocaleDateString('he-IL', { month: 'long', year: 'numeric' });
+})();
+</script>
+
+</body>
+</html>
